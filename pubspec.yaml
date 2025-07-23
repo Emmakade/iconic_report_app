@@ -1,19 +1,32 @@
 name: iconic_report_app
-description: "A new Flutter project."
-publish_to: 'none'
+description: A location-based reporting Flutter app for Iconic University assessment.
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.0
+  sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.1.2
+  http: ^1.2.1
+  awesome_dialog: ^3.0.2
+  google_maps_flutter: ^2.6.0
+  geolocator: ^11.0.0
+  geocoding: ^3.0.0
+  image_picker: ^1.1.1
+  camera: ^0.11.0
+  permission_handler: ^11.3.0
+  flutter_spinkit: ^5.2.0
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
