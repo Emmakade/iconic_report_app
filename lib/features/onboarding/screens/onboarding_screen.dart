@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../routes/route_names.dart';
+import '../../../../routes/route_names.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -19,7 +19,7 @@ class OnboardingScreen extends StatelessWidget {
               const Spacer(),
               // Placeholder i will later use for image or animation
               Image.asset(
-                'assets/images/onboarding.png',
+                'assets/images/logo.png',
                 height: 280,
                 fit: BoxFit.contain,
               ),
