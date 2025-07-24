@@ -1,67 +1,95 @@
 import 'package:flutter/material.dart';
 import '../../../../routes/route_names.dart';
+import '/../core/theme/app_colors.dart'; // Ensure you define AppColors accordingly
+import '/../widgets/custom_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: AppColors.background,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              // Placeholder i will later use for image or animation
-              Image.asset(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 40),
+
+            // App Logo
+            Center(
+              child: Image.asset(
                 'assets/images/logo.png',
-                height: 280,
-                fit: BoxFit.contain,
+                width: 100,
+                height: 100,
               ),
-              const SizedBox(height: 24),
-              Text(
-                "Report from Anywhere",
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.onSurface,
+            ),
+
+            const SizedBox(height: 30),
+
+            // Onboarding Illustration
+            Image.asset(
+              'assets/images/bg_image.png',
+              width: MediaQuery.of(context).size.width * 0.8,
+              fit: BoxFit.contain,
+            ),
+
+            const SizedBox(height: 30),
+
+            // Heading
+            Text(
+              'Report incidents quickly',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textPrimary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 10),
+
+            // Subtext
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Text(
+                'Easily report issues in your area with just a few taps.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 12),
-              Text(
-                "Submit reports with location, media, and category – all in one place.",
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              SizedBox(
+            ),
+
+            const Spacer(),
+
+            // Get Started Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RouteNames.login);
+                    Navigator.pushNamed(context, '/login'); // Or your route
                   },
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    backgroundColor: AppColors.primary,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                    backgroundColor: const Color(0xFF00509E),
                   ),
                   child: const Text(
-                    "Get Started",
+                    'Get Started',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+
+            const SizedBox(height: 30),
+          ],
         ),
       ),
     );

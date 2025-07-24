@@ -1,6 +1,5 @@
-// lib/routes/app_routes.dart
-
 import 'package:flutter/material.dart';
+import '../features/dashboard/screens/submit_report_screen.dart';
 import '../features/splash/screens/spalsh_screen.dart';
 import '../features/onboarding/screens/onboarding_screen.dart';
 import '../features/auth/screens/login_screen.dart';
@@ -18,8 +17,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case RouteNames.dashboard:
         return MaterialPageRoute(builder: (_) => const DashboardScreen());
-      // case RouteNames.reportForm:
-      //   return MaterialPageRoute(builder: (_) => const ReportFormScreen());
+      case RouteNames.submitReport:
+        return MaterialPageRoute(builder: (_) => const SubmitReportScreen());
       // case RouteNames.reportList:
       //   return MaterialPageRoute(builder: (_) => const ReportListScreen());
       // case RouteNames.profile:
@@ -35,10 +34,3 @@ class AppRoutes {
     }
   }
 }
-
-// git init
-// git add README.md
-// git commit -m "first commit"
-// git branch -M main
-// git remote add origin https://github.com/Emmakade/iconic_report_app.git
-// git push -u origin main

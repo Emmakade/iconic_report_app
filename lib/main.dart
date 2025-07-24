@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'core/theme/app_colors.dart';
 import 'routes/app_routes.dart';
 import 'routes/route_names.dart';
 
 void main() {
-  runApp(const IconicReportApp());
+  try {
+    runApp(const IconicReportApp());
+  } catch (e) {
+    print('Error caught: $e');
+    //showing a user-friendly error screen
+    //runApp(const ErrorApp());
+  }
 }
 
 class IconicReportApp extends StatelessWidget {
@@ -16,21 +23,39 @@ class IconicReportApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00509E), // Primary color from design
-          surface: Colors.white,
-          onSurface: Colors.black87,
-        ),
         useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          brightness: Brightness.light,
+          primary: AppColors.primary,
+          secondary: AppColors.secondary,
+          surface: AppColors.cardBackground,
+          onPrimary: Colors.white,
+          onSecondary: Colors.black,
+          onSurface: AppColors.textPrimary,
+          error: AppColors.error,
+          onError: Colors.white,
+        ),
+        scaffoldBackgroundColor: AppColors.background,
+        cardColor: AppColors.cardBackground,
+        shadowColor: AppColors.shadowColor,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00509E),
-          surface: Colors.black,
-          onSurface: Colors.white70,
-        ),
         useMaterial3: true,
+        colorScheme: ColorScheme.dark(
+          brightness: Brightness.dark,
+          primary: AppColors.primary,
+          secondary: AppColors.secondary,
+          surface: Colors.grey[850]!,
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          onSurface: Colors.white,
+          error: AppColors.error,
+          onError: Colors.black,
+        ),
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: Colors.grey[850],
+        shadowColor: AppColors.shadowColor,
       ),
       themeMode: ThemeMode.system,
       initialRoute: RouteNames.splash,

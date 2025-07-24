@@ -19,7 +19,7 @@ class _SubmitReportScreenState extends State<SubmitReportScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   bool _isSubmitting = false;
-  bool success = false;
+  bool success = true;
 
   void _submitReport() async {
     if (!_formKey.currentState!.validate()) return;
