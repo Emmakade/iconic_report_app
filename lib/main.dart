@@ -1,65 +1,52 @@
 import 'package:flutter/material.dart';
-import 'core/theme/app_colors.dart';
-import 'routes/app_routes.dart';
-import 'routes/route_names.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/app_export.dart';
+
+var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
-  try {
-    runApp(const IconicReportApp());
-  } catch (e) {
-    print('Error caught: $e');
-    //showing a user-friendly error screen
-    //runApp(const ErrorApp());
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  // 🚨 CRITICAL: Device orientation lock - DO NOT REMOVE
+  Future.wait([
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
+  ]).then((value) {
+    runApp(const MyApp());
+  });
 }
 
-class IconicReportApp extends StatelessWidget {
-  const IconicReportApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Iconic Report App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        useMaterial3: true,
-        colorScheme: ColorScheme.light(
-          brightness: Brightness.light,
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
-          surface: AppColors.cardBackground,
-          onPrimary: Colors.white,
-          onSecondary: Colors.black,
-          onSurface: AppColors.textPrimary,
-          error: AppColors.error,
-          onError: Colors.white,
-        ),
-        scaffoldBackgroundColor: AppColors.background,
-        cardColor: AppColors.cardBackground,
-        shadowColor: AppColors.shadowColor,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-        colorScheme: ColorScheme.dark(
-          brightness: Brightness.dark,
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
-          surface: Colors.grey[850]!,
-          onPrimary: Colors.white,
-          onSecondary: Colors.white,
-          onSurface: Colors.white,
-          error: AppColors.error,
-          onError: Colors.black,
-        ),
-        scaffoldBackgroundColor: Colors.black,
-        cardColor: Colors.grey[850],
-        shadowColor: AppColors.shadowColor,
-      ),
-      themeMode: ThemeMode.system,
-      initialRoute: RouteNames.splash,
-      onGenerateRoute: AppRoutes.generateRoute,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          title: 'Iconic Report App',
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          // 🚨 CRITICAL: NEVER REMOVE OR MODIFY
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(
+                context,
+              ).copyWith(textScaler: const TextScaler.linear(1.0)),
+              child: child!,
+            );
+          },
+          // 🚨 END CRITICAL SECTION
+          navigatorKey: NavigatorService.navigatorKey,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en', '')],
+          initialRoute: AppRoutes.initialRoute,
+          routes: AppRoutes.routes,
+        );
+      },
     );
   }
 }

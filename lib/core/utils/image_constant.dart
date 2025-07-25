@@ -1,4 +1,3 @@
-// lib/core/utils/image_constant.dart
 class ImageConstant {
   // Base path for all assets
   static const String _basePath = 'assets/images/';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../widgets/custom_app_bar.dart';
 import '../../../widgets/dashboard_card.dart';
 
@@ -20,7 +19,7 @@ class DashboardScreen extends StatelessWidget {
             Text(
               'Welcome back!',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: AppColors.primary,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold,
                   ),
             ),
