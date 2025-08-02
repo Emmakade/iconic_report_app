@@ -6,22 +6,23 @@ import '../../../widgets/custom_button.dart';
 import '../provider/report_add_provider.dart';
 import '../widgets/incident_type_selector.dart';
 import '../widgets/photo_upload_section.dart';
+import '../widgets/rich_text_editor.dart';
 
-class ReportAddDashboard extends StatefulWidget {
-  const ReportAddDashboard({super.key});
+class ReportAddScreen extends StatefulWidget {
+  const ReportAddScreen({super.key});
 
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider<ReportAddProvider>(
       create: (context) => ReportAddProvider()..initialize(),
-      child: const ReportAddDashboard(),
+      child: const ReportAddScreen(),
     );
   }
 
   @override
-  State<ReportAddDashboard> createState() => _ReportAddDashboardState();
+  State<ReportAddScreen> createState() => _ReportAddScreenState();
 }
 
-class _ReportAddDashboardState extends State<ReportAddDashboard> {
+class _ReportAddScreenState extends State<ReportAddScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +78,10 @@ class _ReportAddDashboardState extends State<ReportAddDashboard> {
               SizedBox(height: 32.h),
               _buildLocationField(provider),
               SizedBox(height: 32.h),
-              _buildQuillEditor(provider),
+              RichTextEditor(
+                controller: provider.quillController,
+                onTextChanged: provider.updateDescription,
+              ),
               SizedBox(height: 32.h),
               PhotoUploadSection(
                 photoPaths: provider.reportModel.photoPaths ?? [],
@@ -135,20 +139,6 @@ class _ReportAddDashboardState extends State<ReportAddDashboard> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildQuillEditor(ReportAddProvider provider) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: appTheme.colorFFE5E7),
-        borderRadius: BorderRadius.circular(12.h),
-      ),
-      child: QuillEditor(
-        controller: provider.quillController,
-        focusNode: FocusNode(),
-        scrollController: ScrollController(),
-      ),
     );
   }
 

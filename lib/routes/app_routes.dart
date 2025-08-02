@@ -8,7 +8,7 @@ import '../features/report/screens/report_add_screen.dart';
 class AppRoutes {
   static const String emailVerificationScreen = '/email_verification_screen';
   static const String profileScreen = '/profile_screen';
-  static const String reportCreationDashboard = '/report-creation-dashboard';
+  static const String reportAddScreen = '/report_add_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
   static const String initialRoute = '/';
@@ -16,7 +16,7 @@ class AppRoutes {
   static Map<String, WidgetBuilder> get routes => {
         emailVerificationScreen: LoginScreen.builder,
         profileScreen: ProfileScreen.builder,
-        reportCreationDashboard: ReportAddDashboard.builder,
+        reportAddScreen: ReportAddScreen.builder,
         appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: AppNavigationScreen.builder
       };
